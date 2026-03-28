@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LF Renovations Ltd – Mockup 4: Warm Craft</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --clay: #C4622D;
+    --clay-light: #F5D5C0;
+    --clay-dark: #8A3A14;
+    --sand: #F5EFE4;
+    --warm: #E8DFD0;
+    --bark: #2C1F13;
+    --bark2: #3D2B1A;
+    --stone: #7A6A58;
+    --cream: #FBF7F1;
+    --light-stone: #B8AA98;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--cream);
+    color: var(--bark);
+    font-family: 'Instrument Sans', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: var(--bark);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 60px; height: 72px;
+  }
+  .nav-logo {
+    font-family: 'Fraunces', serif;
+    font-size: 20px; color: var(--sand);
+    letter-spacing: 1px;
+  }
+  .nav-logo span { color: var(--clay); font-style: italic; }
+  .nav-links { display: flex; gap: 40px; }
+  .nav-links a {
+    color: rgba(245,239,228,0.6); text-decoration: none;
+    font-size: 13px; font-weight: 500; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--clay-light); }
+  .nav-cta {
+    background: var(--clay); color: white;
+    padding: 10px 24px; border: none;
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 13px; font-weight: 600;
+    cursor: pointer; transition: background 0.2s;
+    border-radius: 4px;
+  }
+  .nav-cta:hover { background: var(--clay-dark); }
+
+  /* HERO */
+  .hero {
+    padding-top: 72px; min-height: 100vh;
+    background: var(--bark);
+    display: grid; grid-template-columns: 1fr 1fr;
+    position: relative; overflow: hidden;
+  }
+  .hero-texture {
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.015'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .hero-left {
+    padding: 80px 60px;
+    display: flex; flex-direction: column; justify-content: center;
+    position: relative; z-index: 2;
+  }
+  .hero-tag-wrap {
+    display: flex; align-items: center; gap: 14px; margin-bottom: 40px;
+  }
+  .tag-dash { width: 32px; height: 2px; background: var(--clay); }
+  .hero-tag {
+    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--light-stone);
+  }
+  .hero-h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(48px, 6vw, 90px);
+    font-weight: 700; line-height: 1.0; color: var(--sand);
+  }
+  .hero-h1 em { color: var(--clay); display: block; }
+  .hero-body {
+    font-size: 15px; line-height: 1.9; color: var(--light-stone);
+    margin: 32px 0 48px; max-width: 440px;
+  }
+  .hero-acts { display: flex; gap: 16px; align-items: center; }
+  .btn-clay {
+    background: var(--clay); color: white;
+    padding: 16px 36px; border: none;
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 14px; font-weight: 600;
+    cursor: pointer; border-radius: 4px; transition: background 0.2s;
+  }
+  .btn-clay:hover { background: var(--clay-dark); }
+  .btn-bare {
+    background: none; border: 1px solid rgba(245,239,228,0.2);
+    color: rgba(245,239,228,0.7); padding: 16px 36px;
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 14px; font-weight: 500;
+    cursor: pointer; border-radius: 4px; transition: all 0.2s;
+  }
+  .btn-bare:hover { border-color: var(--clay); color: var(--clay-light); }
+
+  .hero-right {
+    position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+    padding: 60px 40px;
+  }
+  .hero-big-num {
+    position: absolute; right: -40px; top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Fraunces', serif;
+    font-size: 300px; font-weight: 700; font-style: italic;
+    color: rgba(196,98,45,0.05); line-height: 1;
+    pointer-events: none; user-select: none;
+  }
+  .hero-services-list {
+    width: 100%; position: relative; z-index: 2;
+  }
+  .hero-svc-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(245,239,228,0.08);
+    cursor: pointer; transition: padding-left 0.3s;
+  }
+  .hero-svc-row:hover { padding-left: 12px; }
+  .hero-svc-row:hover .hsvc-arrow { color: var(--clay); opacity: 1; }
+  .hero-svc-row:first-child { border-top: 1px solid rgba(245,239,228,0.08); }
+  .hsvc-name {
+    font-family: 'Fraunces', serif;
+    font-size: 20px; font-weight: 400; color: var(--sand);
+    transition: color 0.3s;
+  }
+  .hero-svc-row:hover .hsvc-name { color: var(--clay-light); }
+  .hsvc-arrow { color: var(--stone); opacity: 0.5; transition: all 0.3s; font-size: 18px; }
+
+  /* STRIP */
+  .strip {
+    background: var(--clay); padding: 20px 60px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .strip-item {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 13px; color: rgba(255,255,255,0.85); font-weight: 500;
+  }
+  .strip-icon { font-size: 16px; }
+  .strip-div { width: 1px; height: 24px; background: rgba(255,255,255,0.2); }
+
+  /* SERVICES SECTION */
+  .services { padding: 100px 60px; background: var(--cream); }
+  .sec-top { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 60px; }
+  .sec-lbl {
+    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--clay); font-weight: 600; margin-bottom: 14px;
+  }
+  .sec-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(36px, 4vw, 58px); font-weight: 700;
+    color: var(--bark); line-height: 1.1;
+  }
+  .sec-title em { color: var(--clay); }
+  .sec-desc { max-width: 360px; text-align: right; font-size: 14px; color: var(--stone); line-height: 1.8; }
+
+  .svc-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+  }
+  .svc-tile {
+    background: var(--sand);
+    border: 1px solid var(--warm);
+    padding: 36px 28px;
+    cursor: pointer; transition: all 0.3s;
+    position: relative;
+  }
+  .svc-tile:hover {
+    background: var(--bark); 
+    border-color: var(--bark);
+  }
+  .svc-tile:hover .svc-tile-name { color: var(--sand); }
+  .svc-tile:hover .svc-tile-desc { color: var(--light-stone); }
+  .svc-tile:hover .svc-tile-icon-wrap { background: rgba(255,255,255,0.1); }
+  .svc-tile-icon-wrap {
+    width: 52px; height: 52px;
+    background: var(--warm); border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; margin-bottom: 20px;
+    transition: background 0.3s;
+  }
+  .svc-tile-name {
+    font-family: 'Fraunces', serif;
+    font-size: 20px; font-weight: 600; color: var(--bark);
+    margin-bottom: 10px; transition: color 0.3s;
+  }
+  .svc-tile-desc {
+    font-size: 13px; color: var(--stone); line-height: 1.7;
+    transition: color 0.3s;
+  }
+
+  /* ABOUT */
+  .about {
+    background: var(--sand);
+    padding: 100px 60px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  }
+  .about-art {
+    position: relative;
+  }
+  .about-box {
+    background: var(--bark);
+    aspect-ratio: 4/5; border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .about-lf {
+    font-family: 'Fraunces', serif;
+    font-size: 160px; font-weight: 700; font-style: italic;
+    color: rgba(245,239,228,0.06); line-height: 1;
+    user-select: none;
+  }
+  .about-yr-badge {
+    position: absolute; bottom: -20px; right: -20px;
+    width: 110px; height: 110px;
+    background: var(--clay); border-radius: 50%;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    box-shadow: 0 4px 20px rgba(196,98,45,0.4);
+  }
+  .ayb-num {
+    font-family: 'Fraunces', serif;
+    font-size: 32px; font-weight: 700; color: white; line-height: 1;
+  }
+  .ayb-sub { font-size: 9px; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.8); text-align: center; }
+
+  .about-text .sec-lbl { display: block; }
+  .about-p { font-size: 15px; line-height: 1.9; color: var(--stone); margin-top: 20px; }
+  .about-features { margin-top: 40px; display: flex; flex-direction: column; gap: 16px; }
+  .af-row {
+    display: flex; align-items: center; gap: 16px;
+    padding-bottom: 16px; border-bottom: 1px solid var(--warm);
+  }
+  .af-icon {
+    width: 42px; height: 42px; flex-shrink: 0;
+    background: var(--clay-light); border-radius: 8px;
+    display: flex; align-items: center; justify-content: center; font-size: 18px;
+  }
+  .af-text h5 { font-size: 14px; font-weight: 600; color: var(--bark); }
+  .af-text p { font-size: 12px; color: var(--stone); margin-top: 2px; }
+
+  /* CTA */
+  .cta-section {
+    background: var(--bark);
+    padding: 100px 60px;
+    text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .cta-section::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center, rgba(196,98,45,0.1) 0%, transparent 60%);
+  }
+  .cta-eyebrow {
+    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--clay); margin-bottom: 24px; position: relative;
+  }
+  .cta-h {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(36px, 5vw, 64px); font-weight: 700;
+    color: var(--sand); line-height: 1.15;
+    position: relative;
+  }
+  .cta-h em { color: var(--clay); font-style: italic; }
+  .cta-sub {
+    font-size: 15px; color: var(--light-stone); max-width: 500px;
+    margin: 20px auto 48px; line-height: 1.8; position: relative;
+  }
+  .cta-btns { display: flex; gap: 16px; justify-content: center; position: relative; }
+
+  /* FOOTER */
+  footer {
+    background: var(--bark2);
+    padding: 70px 60px 40px;
+  }
+  .footer-top {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px;
+    padding-bottom: 60px; border-bottom: 1px solid rgba(245,239,228,0.06);
+  }
+  .f-logo {
+    font-family: 'Fraunces', serif;
+    font-size: 24px; color: var(--sand); margin-bottom: 16px;
+  }
+  .f-logo span { color: var(--clay); font-style: italic; }
+  .f-desc { font-size: 13px; color: var(--stone); line-height: 1.8; }
+  .fc2 h5 {
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--light-stone); margin-bottom: 20px;
+  }
+  .fc2 a {
+    display: block; color: var(--stone); text-decoration: none;
+    font-size: 13px; margin-bottom: 10px; transition: color 0.2s;
+  }
+  .fc2 a:hover { color: var(--clay-light); }
+  .footer-bottom {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 28px;
+    font-size: 12px; color: var(--stone);
+  }
+  .footer-bottom span { color: var(--clay); }
+
+  .mockup-badge {
+    position: fixed; top: 80px; right: 20px; z-index: 9999;
+    background: var(--clay); color: white;
+    padding: 8px 16px; font-family: 'Instrument Sans', sans-serif;
+    font-size: 10px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; border-radius: 4px;
+  }
+</style>
+</head>
+<body>
+
+<div class="mockup-badge">Mockup 4 — Warm Craft</div>
+
+<nav>
+  <div class="nav-logo">LF <span>Renovations</span> Ltd</div>
+  <div class="nav-links">
+    <a href="#">Services</a>
+    <a href="#">About</a>
+    <a href="#">Projects</a>
+    <a href="#">Contact</a>
+  </div>
+  <button class="nav-cta">Free Quote</button>
+</nav>
+
+<section class="hero">
+  <div class="hero-texture"></div>
+  <div class="hero-left">
+    <div class="hero-tag-wrap">
+      <div class="tag-dash"></div>
+      <span class="hero-tag">Full-Service Renovation Specialists</span>
+    </div>
+    <h1 class="hero-h1">
+      Crafted<br>With
+      <em>Care.</em>
+    </h1>
+    <p class="hero-body">LF Renovations Ltd brings expert craftsmanship and honest service to every project — large or small, we're with you from first call to final finish.</p>
+    <div class="hero-acts">
+      <button class="btn-clay">Get a Free Quote</button>
+      <button class="btn-bare">View Services</button>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-big-num">LF</div>
+    <div class="hero-services-list">
+      <div class="hero-svc-row"><span class="hsvc-name">Plumbing</span><span class="hsvc-arrow">→</span></div>
+      <div class="hero-svc-row"><span class="hsvc-name">Electrical Works</span><span class="hsvc-arrow">→</span></div>
+      <div class="hero-svc-row"><span class="hsvc-name">Bathrooms</span><span class="hsvc-arrow">→</span></div>
+      <div class="hero-svc-row"><span class="hsvc-name">Kitchen Remodelling</span><span class="hsvc-arrow">→</span></div>
+      <div class="hero-svc-row"><span class="hsvc-name">Tiling</span><span class="hsvc-arrow">→</span></div>
+      <div class="hero-svc-row"><span class="hsvc-name">Decoration</span><span class="hsvc-arrow">→</span></div>
+      <div class="hero-svc-row"><span class="hsvc-name">Landscaping</span><span class="hsvc-arrow">→</span></div>
+      <div class="hero-svc-row"><span class="hsvc-name">Handyman</span><span class="hsvc-arrow">→</span></div>
+      <div class="hero-svc-row"><span class="hsvc-name">Structural Work</span><span class="hsvc-arrow">→</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="strip">
+  <div class="strip-item"><span class="strip-icon">✅</span> Fully Insured</div>
+  <div class="strip-div"></div>
+  <div class="strip-item"><span class="strip-icon">💬</span> Free No-Obligation Quotes</div>
+  <div class="strip-div"></div>
+  <div class="strip-item"><span class="strip-icon">⭐</span> 5-Star Rated Service</div>
+  <div class="strip-div"></div>
+  <div class="strip-item"><span class="strip-icon">🏆</span> Guaranteed Workmanship</div>
+  <div class="strip-div"></div>
+  <div class="strip-item"><span class="strip-icon">🔨</span> 15+ Years Experience</div>
+</div>
+
+<section class="services">
+  <div class="sec-top">
+    <div>
+      <div class="sec-lbl">What We Do</div>
+      <h2 class="sec-title">Our <em>Services</em></h2>
+    </div>
+    <p class="sec-desc">Covering every trade, so you only need one company for your entire renovation.</p>
+  </div>
+  <div class="svc-grid">
+    <div class="svc-tile"><div class="svc-tile-icon-wrap">🔧</div><div class="svc-tile-name">All Aspects of Plumbing</div><div class="svc-tile-desc">Repairs, installations and full system works.</div></div>
+    <div class="svc-tile"><div class="svc-tile-icon-wrap">⚡</div><div class="svc-tile-name">Electrical Works</div><div class="svc-tile-desc">All electrical work — certified and guaranteed.</div></div>
+    <div class="svc-tile"><div class="svc-tile-icon-wrap">🏗️</div><div class="svc-tile-name">Structural Alterations</div><div class="svc-tile-desc">Minor structural changes done safely and properly.</div></div>
+    <div class="svc-tile"><div class="svc-tile-icon-wrap">🛁</div><div class="svc-tile-name">Bathroom Installs</div><div class="svc-tile-desc">From en-suites to luxury wet rooms — fully fitted.</div></div>
+    <div class="svc-tile"><div class="svc-tile-icon-wrap">🍳</div><div class="svc-tile-name">Kitchen Remodelling</div><div class="svc-tile-desc">Design-led kitchen fitting tailored to your home.</div></div>
+    <div class="svc-tile"><div class="svc-tile-icon-wrap">🎨</div><div class="svc-tile-name">All Decoration Works</div><div class="svc-tile-desc">Painting, plastering, wallpaper and finishing.</div></div>
+    <div class="svc-tile"><div class="svc-tile-icon-wrap">🌿</div><div class="svc-tile-name">Garden & Landscaping</div><div class="svc-tile-desc">Transforming outdoor spaces into living areas.</div></div>
+    <div class="svc-tile"><div class="svc-tile-icon-wrap">🔨</div><div class="svc-tile-name">Handyman Service</div><div class="svc-tile-desc">Reliable help for any household job, big or small.</div></div>
+    <div class="svc-tile"><div class="svc-tile-icon-wrap">◼</div><div class="svc-tile-name">All Aspects of Tiling</div><div class="svc-tile-desc">Floor, wall and feature tiling throughout your home.</div></div>
+  </div>
+</section>
+
+<section class="about">
+  <div class="about-art">
+    <div class="about-box">
+      <span class="about-lf">LF</span>
+      <div class="about-yr-badge">
+        <div class="ayb-num">15+</div>
+        <div class="ayb-sub">Years<br>Exp.</div>
+      </div>
+    </div>
+  </div>
+  <div class="about-text">
+    <div class="sec-lbl">About LF Renovations Ltd</div>
+    <h2 class="sec-title">Built on <em>Honesty,</em><br>Finished with <em>Pride</em></h2>
+    <p class="about-p">We're a family-run renovation business with a genuine commitment to quality. We don't cut corners, we don't disappear mid-job, and we won't let you down. Every project gets our full attention from start to finish.</p>
+    <div class="about-features">
+      <div class="af-row"><div class="af-icon">✅</div><div class="af-text"><h5>Fully Insured Professionals</h5><p>All work carried out by insured, experienced tradespeople</p></div></div>
+      <div class="af-row"><div class="af-icon">💬</div><div class="af-text"><h5>Free, Transparent Quotes</h5><p>No hidden costs — what we quote is what you pay</p></div></div>
+      <div class="af-row"><div class="af-icon">🏆</div><div class="af-text"><h5>Workmanship Guaranteed</h5><p>We stand behind every job with a quality guarantee</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="cta-eyebrow">Ready to Get Started?</div>
+  <h2 class="cta-h">Let's Transform<br>Your <em>Space Together</em></h2>
+  <p class="cta-sub">Contact LF Renovations Ltd today for a free, no-obligation quote. We'll talk through your project and give you a fair, honest price.</p>
+  <div class="cta-btns">
+    <button class="btn-clay">Get a Free Quote</button>
+    <button class="btn-bare">Call Us Today</button>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="f-logo">LF <span>Renovations</span> Ltd</div>
+      <p class="f-desc">Family-run renovation specialists with honest pricing and quality craftsmanship you can trust.</p>
+    </div>
+    <div class="fc2">
+      <h5>Services</h5>
+      <a href="#">Plumbing</a><a href="#">Electrical</a><a href="#">Bathrooms</a><a href="#">Kitchens</a><a href="#">Tiling</a>
+    </div>
+    <div class="fc2">
+      <h5>More</h5>
+      <a href="#">Decoration</a><a href="#">Landscaping</a><a href="#">Structural</a><a href="#">Handyman</a>
+    </div>
+    <div class="fc2">
+      <h5>Company</h5>
+      <a href="#">About Us</a><a href="#">Get a Quote</a><a href="#">Contact</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 <span>LF Renovations Ltd.</span> All Rights Reserved.</span>
+    <span>Crafted with <span>♥</span></span>
+  </div>
+</footer>
+
+</body>
+</html>
